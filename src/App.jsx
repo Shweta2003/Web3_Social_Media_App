@@ -6,8 +6,12 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import EditProfile from './pages/EditProfile'
 
+import Navbar from './components/Navbar/Navbar'
+
 const App = () => {
   return (
+    <div>
+    <Navbar/>
     <Routes>
       <Route path='/' element={<Login />}/>
       <Route path='/home' element={<HomePage />}/>
@@ -15,6 +19,7 @@ const App = () => {
       <Route path='/edit' element={<EditProfile />}/>
 
     </Routes>
+    </div>
   )
 }
 
