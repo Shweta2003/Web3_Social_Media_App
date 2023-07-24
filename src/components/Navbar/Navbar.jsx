@@ -1,17 +1,20 @@
-// Navbar.jsx
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classes from './Navbar.module.css';
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn }) => {
   return (
     <nav>
       <div className={classes.navbar}>
         <h1>Social Media</h1>
         <ul className={classes['nav-links']}>
-          <li><a href="/home">Home</a></li>
-          <li><a href="/profile">Profile</a></li>
-          <li><a href="/newPost">New Post</a></li>
+          {isLoggedIn && (
+            <>
+              <li><Link to="/home">Home</Link></li>
+              <li><Link to="/profile">Profile</Link></li>
+              <li><Link to="/edit">Edit</Link></li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
@@ -19,3 +22,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

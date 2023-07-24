@@ -1,10 +1,10 @@
-import React from 'react'
-import LoginPage from '../components/Login/LoginPage'
+import React from 'react';
+import LoginPage from '../components/Login/LoginPage';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   return (
-    <LoginPage />
-  )
-}
+    <LoginPage onLogin={onLogin} />
+  );
+};
 
-export default Login
+export default Login;
