@@ -1,11 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import classes from './Login.module.css'
+import abi from '../common/ABI'
 import Web3 from 'web3';
-
 function LoginPage() {
 
+  const navigate = useNavigate();
+
   const [isConnected, setIsConnected] = useState(false);
-  const [ethBalance, setEthBalance] = useState("");
+  const [AccountName, setAccountName] = useState();
 
   const detectCurrentProvider = () => {
     let provider;
@@ -14,7 +17,7 @@ function LoginPage() {
     } else if (window.web3) {
       provider = window.web3.currentProvider;
     } else {
-      console.log("Please install Metamask");
+      alert("Please install Metamask!!");
     }
     return provider;
   };
@@ -23,24 +26,39 @@ function LoginPage() {
     try {
       const currentProvider = detectCurrentProvider();
       if (currentProvider) {
+
+        // connecting to metamask account
         await currentProvider.request({ method: 'eth_requestAccounts' });
-        const web3 = new Web3(currentProvider);
-        const userAccount = await web3.eth.getAccounts();
+        const web3a = new Web3(currentProvider);
+
+        // getting account name
+        const userAccount = await web3a.eth.getAccounts();
         const account = userAccount[0];
-        let ethBalance = await web3.eth.getBalance(account);
-        setEthBalance(ethBalance);
+        setAccountName(account);
         setIsConnected(true);
+
+        // setting connection to contract
+        const tempContract = await new web3a.eth.Contract(abi, "0x3576317730B03C389836edf78e6691747616269d");
+
+        try {
+          const result = await tempContract.methods.Login(account).send({ from: account});
+          console.log(result);
+
+          // after login go to homepage
+          navigate('./home',{
+            state : {acc : account}
+          })
+    
+        } catch (error) {
+          alert("couldn't login!!");
+          console.log(error);
+        }
+
       }
     } catch (err) {
       console.log(err);
     }
   }
-
-  const onDisconnect = () => {
-    setIsConnected(false);
-  }
-
-
 
   return (
     <div className="app">
@@ -57,20 +75,12 @@ function LoginPage() {
         <div>
           <div>
             <h2> You are connected to metamask.</h2>
-            <div>
-              <span>Balance: </span>
-              {ethBalance}
-            </div>
-          </div>
-          <div>
-            <button onClick={onDisconnect}>
-              Disconnect
-            </button>
           </div>
         </div>
       )}
     </div>
   );
 }
+
 
 export default LoginPage;
