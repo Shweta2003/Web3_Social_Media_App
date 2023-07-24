@@ -1,8 +1,9 @@
-import { useState} from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './Login.module.css'
 import abi from '../common/ABI'
 import Web3 from 'web3';
+import im from '../../Assets/try.jpg';
 function LoginPage() {
 
   const [isConnected, setIsConnected] = useState(false);
@@ -39,17 +40,16 @@ function LoginPage() {
         const tempContract = await new web3a.eth.Contract(abi, "0x3576317730B03C389836edf78e6691747616269d");
 
         try {
-          const result = await tempContract.methods.Login(account).send({ from: account});
+          const result = await tempContract.methods.Login(account).send({ from: account });
           console.log(result);
           await setIsConnected(!isConnected);
-          my = true;
           console.log("login page " + isConnected)
 
           // after login go to homepage
-          navigate('./home',{
-            state : {acc : account}
+          navigate('./home', {
+            state: { acc: account }
           })
-    
+
         } catch (error) {
           alert("couldn't login!!");
           console.log(error);
@@ -62,23 +62,12 @@ function LoginPage() {
   }
 
   return (
-    <div className="app">
-      <div>
-        {!isConnected && (
-          <div>
-            <button onClick={onConnect}>
-              Login
-            </button>
-          </div>
-        )}
-      </div>
-      {isConnected && (
-        <div>
-          <div>
-            <h2> You are connected to metamask.</h2>
-          </div>
-        </div>
-      )}
+    <div className={classes.app}>
+        <img src={im} alt='' className={classes.image}/>
+        <div className={classes.bang}><h2 className={classes.head}>Connect Your Wallet to Login</h2>
+        <button onClick={onConnect} className={classes.my_btn}>
+          Connect to Metamask
+        </button></div>
     </div>
   );
 }
