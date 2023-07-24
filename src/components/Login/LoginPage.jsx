@@ -5,10 +5,10 @@ import abi from '../common/ABI'
 import Web3 from 'web3';
 function LoginPage() {
 
-  const navigate = useNavigate();
-
   const [isConnected, setIsConnected] = useState(false);
-  const [AccountName, setAccountName] = useState();
+  let my;
+
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
   const detectCurrentProvider = () => {
     let provider;
@@ -34,8 +34,6 @@ function LoginPage() {
         // getting account name
         const userAccount = await web3a.eth.getAccounts();
         const account = userAccount[0];
-        setAccountName(account);
-        setIsConnected(true);
 
         // setting connection to contract
         const tempContract = await new web3a.eth.Contract(abi, "0x3576317730B03C389836edf78e6691747616269d");
@@ -43,6 +41,9 @@ function LoginPage() {
         try {
           const result = await tempContract.methods.Login(account).send({ from: account});
           console.log(result);
+          await setIsConnected(!isConnected);
+          my = true;
+          console.log("login page " + isConnected)
 
           // after login go to homepage
           navigate('./home',{

@@ -5,10 +5,10 @@ import { useLocation } from 'react-router-dom';
 
 const Home = () => {
 
-  const location = useLocation;
-  console.log(location)
+  const location = useLocation();
+  const address = location.state.acc;
   return (
-    <div>Home connected to : 
+    <div>Home connected to : {address}
     </div>
   )
 }
