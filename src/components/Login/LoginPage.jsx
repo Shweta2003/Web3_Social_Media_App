@@ -1,71 +1,47 @@
-import { useState } from 'react';
+import React,{useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
+import { WebVariable } from '../../App'
 import classes from './Login.module.css'
-import abi from '../common/ABI'
-import Web3 from 'web3';
 import im from '../../Assets/try.jpg';
-function LoginPage() {
 
-  const [isConnected, setIsConnected] = useState(false);
-  let my;
+
+function LoginPage() {
 
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
-  const detectCurrentProvider = () => {
-    let provider;
-    if (window.ethereum) {
-      provider = window.ethereum;
-    } else if (window.web3) {
-      provider = window.web3.currentProvider;
-    } else {
-      alert("Please install Metamask!!");
-    }
-    return provider;
-  };
+    const content = useContext(WebVariable);
 
-  const onConnect = async () => {
-    try {
-      const currentProvider = detectCurrentProvider();
-      if (currentProvider) {
+    const connect_btn = async() => {
+        if(window.ethereum){
+            try {
+                await content.NewWeb3();
+                console.log(content.web3.current);
+                console.log(content.account.current);
+                console.log(content.contract.current);
 
-        // connecting to metamask account
-        await currentProvider.request({ method: 'eth_requestAccounts' });
-        const web3a = new Web3(currentProvider);
+                // login function
+                const result = await content.contract.current.methods.Login(content.account.current).send({ from: content.account.current });
+                await content.makeConnection();
+                console.log(result);
+                console.log(content.isConnected.current)
 
-        // getting account name
-        const userAccount = await web3a.eth.getAccounts();
-        const account = userAccount[0];
+                // after login go to homepage
+                navigate('./home');
 
-        // setting connection to contract
-        const tempContract = await new web3a.eth.Contract(abi, "0x3576317730B03C389836edf78e6691747616269d");
-
-        try {
-          const result = await tempContract.methods.Login(account).send({ from: account });
-          console.log(result);
-          await setIsConnected(!isConnected);
-          console.log("login page " + isConnected)
-
-          // after login go to homepage
-          navigate('./home', {
-            state: { acc: account }
-          })
-
-        } catch (error) {
-          alert("couldn't login!!");
-          console.log(error);
+              } catch (error) {
+                console.log(error);
+              }
         }
-
-      }
-    } catch (err) {
-      console.log(err);
+        else{
+            alert("First install Metamask")
+        }
     }
-  }
 
   return (
     <div className={classes.app}>
         <img src={im} alt='' className={classes.image}/>
         <div className={classes.bang}><h2 className={classes.head}>Connect Your Wallet to Login</h2>
-        <button onClick={onConnect} className={classes.my_btn}>
+        <button onClick={connect_btn} className={classes.my_btn}>
           Connect to Metamask
         </button></div>
     </div>

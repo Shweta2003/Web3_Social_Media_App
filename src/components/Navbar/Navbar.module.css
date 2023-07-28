@@ -1,12 +1,15 @@
 /* Navbar.module.css */
+*{
+  padding: 0%;
+  margin: 0%;
+}
 
 .navbar {
     background-color: #145693;
     color: #fff;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+    height: 70px;
   }
   
   .nav-links {
@@ -20,17 +23,9 @@
     margin-left: 20px;
     line-height: 10px;
     font-weight: 500;
+    margin-right: 40px;
   }
   
-  .nav-links li {
-    margin-right: 20px;
-  }
-  
-  .nav-links li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-  }
   
   .nav-links li a:hover {
     color: #81AED6;
@@ -39,4 +34,24 @@
   .logo{
     margin-left: 20px;
   }
+
+  .opt1{
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    line-height: 25px;
+    padding: 0px 50px;
+    height: 70px;
+  }
+
+  .opt1:hover{
+    background: -webkit-linear-gradient(bottom, #4f82af, #145693);
+    color: #81AED6;
+  }
+
+  
+
+
   

@@ -1,6 +1,6 @@
-// contract ID = 0x3576317730B03C389836edf78e6691747616269d
+// contract ID = 0x600B0452AA665B572eBBd7EB87c0F490CFeF8C60
 
-const ABI = [
+const ABI =  [
     {
         "inputs": [
             {
@@ -10,7 +10,12 @@ const ABI = [
             },
             {
                 "internalType": "string",
-                "name": "_user_img_cid",
+                "name": "_gender",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_CID",
                 "type": "string"
             },
             {
@@ -22,11 +27,6 @@ const ABI = [
                 "internalType": "string",
                 "name": "_DOB",
                 "type": "string"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_age",
-                "type": "uint256"
             },
             {
                 "internalType": "string",
@@ -74,6 +74,56 @@ const ABI = [
                 "internalType": "address",
                 "name": "_user_address",
                 "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_account_to_follow",
+                "type": "address"
+            }
+        ],
+        "name": "Follow",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_user_address",
+                "type": "address"
+            }
+        ],
+        "name": "GetIndex",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "Get_registered",
+        "outputs": [
+            {
+                "internalType": "address[]",
+                "name": "",
+                "type": "address[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_user_address",
+                "type": "address"
             }
         ],
         "name": "LogOut",
@@ -97,9 +147,9 @@ const ABI = [
     {
         "inputs": [
             {
-                "internalType": "address",
+                "internalType": "uint256",
                 "name": "",
-                "type": "address"
+                "type": "uint256"
             }
         ],
         "name": "allUsers",
@@ -116,7 +166,7 @@ const ABI = [
             },
             {
                 "internalType": "string",
-                "name": "user_img_cid",
+                "name": "user_CID",
                 "type": "string"
             },
             {
@@ -130,9 +180,9 @@ const ABI = [
                 "type": "string"
             },
             {
-                "internalType": "uint256",
-                "name": "age",
-                "type": "uint256"
+                "internalType": "string",
+                "name": "gender",
+                "type": "string"
             },
             {
                 "internalType": "string",
@@ -149,19 +199,13 @@ const ABI = [
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_user_address",
-                "type": "address"
-            }
-        ],
-        "name": "check_if_currently_logged_in",
+        "inputs": [],
+        "name": "all_currently_logged_in",
         "outputs": [
             {
-                "internalType": "bool",
+                "internalType": "address[]",
                 "name": "",
-                "type": "bool"
+                "type": "address[]"
             }
         ],
         "stateMutability": "view",
@@ -194,12 +238,116 @@ const ABI = [
                 "type": "uint256"
             }
         ],
+        "name": "followers",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "follower",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "account_following",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getData",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "address",
+                        "name": "user_address",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "user_CID",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "user_img_filename",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "DOB",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "gender",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "email",
+                        "type": "string"
+                    }
+                ],
+                "internalType": "struct user.userData[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
         "name": "registered_users",
         "outputs": [
             {
                 "internalType": "address",
                 "name": "",
                 "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "return_follow",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "address",
+                        "name": "follower",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "account_following",
+                        "type": "address"
+                    }
+                ],
+                "internalType": "struct user.following_det[]",
+                "name": "",
+                "type": "tuple[]"
             }
         ],
         "stateMutability": "view",
