@@ -1,5 +1,6 @@
-// contract ID = 0x0335A65380158320dEC6F9b5D7d79cf7134D560C
-const ABI = [
+// contract ID = 0x600B0452AA665B572eBBd7EB87c0F490CFeF8C60
+
+const ABI =  [
     {
         "inputs": [
             {
@@ -10,6 +11,11 @@ const ABI = [
             {
                 "internalType": "string",
                 "name": "_gender",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "my_CID",
                 "type": "string"
             },
             {
@@ -160,6 +166,11 @@ const ABI = [
             },
             {
                 "internalType": "string",
+                "name": "user_CID",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
                 "name": "user_img_filename",
                 "type": "string"
             },
@@ -257,6 +268,11 @@ const ABI = [
                     {
                         "internalType": "string",
                         "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "user_CID",
                         "type": "string"
                     },
                     {

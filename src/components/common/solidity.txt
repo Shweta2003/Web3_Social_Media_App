@@ -15,6 +15,7 @@ contract user {
     struct userData{
         address user_address;
         string username;
+        string user_CID;
         string user_img_filename;
         string DOB;
         string gender;
@@ -49,14 +50,14 @@ contract user {
     }
 
     // function to add new details to the profile
-    function AddProfileDetails(string memory _username, string memory _gender, string memory _user_img_filename, string memory _DOB, string memory _desc, string memory _email, address _user_address)public {
+    function AddProfileDetails(string memory _username, string memory _gender, string memory my_CID, string memory _user_img_filename, string memory _DOB, string memory _desc, string memory _email, address _user_address)public {
 
         if(Check_if_registered(_user_address) == false){
             registered_users.push(_user_address);
-            allUsers.push(userData({user_address : _user_address, username : _username, user_img_filename : _user_img_filename,gender : _gender, DOB : _DOB,desc : _desc,email : _email}));
+            allUsers.push(userData({user_address : _user_address, username : _username, user_CID : my_CID, user_img_filename : _user_img_filename,gender : _gender, DOB : _DOB,desc : _desc,email : _email}));
         }
         else{
-            allUsers[GetIndex(_user_address)] = userData({user_address : _user_address, username : _username, user_img_filename : _user_img_filename,gender : _gender, DOB : _DOB,desc : _desc,email : _email});
+            allUsers[GetIndex(_user_address)] = userData({user_address : _user_address, username : _username, user_CID : my_CID, user_img_filename : _user_img_filename,gender : _gender, DOB : _DOB,desc : _desc,email : _email});
         }
     }
 

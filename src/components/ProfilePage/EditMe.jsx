@@ -100,10 +100,10 @@ const EditMe = () => {
       // Profile Edit function
       const result = await content.contract.current.methods.AddProfileDetails(userDetail.UserName, userDetail.sex, MyCID.current, fileopt.name, userDetail.Birthday, userDetail.Caption, userDetail.email, content.account.current).send({ from: content.account.current });
       console.log(result);
-      navigate('../profile')
+      navigate(`../profile/${content.account.current}`,{ state:{ from: `${content.account.current}` }})
 
     } catch (error) {
-      alert("couldn't edit profile");
+      alert("couldn't edit profile" );
       console.log(error);
     }
   }
