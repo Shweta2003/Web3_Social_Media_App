@@ -21,7 +21,7 @@ const NavAfterLogin = () => {
                 <div className={classes.navname}><img src={logo} className={classes.logo} alt='' /> <span className={classes.name}>Social Web</span></div>
                 <ul className={classes['nav-links']} >
                     <Link to="../home" className={classes.opt1}>Home</Link>
-                    <Link to="../profile" className={classes.opt1}>Profile</Link>
+                    <Link to={`../profile/${content.account.current}`} state={{ from: `${content.account.current}` }} className={classes.opt1}>Profile</Link>
                     <Link onClick={HandleLogout} className={classes.opt1}>Logout</Link>
                 </ul>
             </div>

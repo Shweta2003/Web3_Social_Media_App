@@ -1,17 +1,15 @@
 import React, { useState, useContext, useEffect, useRef } from 'react'
 import classes from './Home.module.css'
 import { WebVariable } from '../../App';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
   const content = useContext(WebVariable);
   const [list_of_users, setList] = useState([]);
-  const [list_of_, setList_of] = useState([]);
-  
+  const [list_of_, setList_of] = useState([]); 
 
   const Check_to_follow = (acc_) => {
-    console.log(acc_)
-    console.log(list_of_)
     if(acc_ === content.account.current){
       return true;
     }
@@ -19,10 +17,8 @@ const Home = () => {
       if(list_of_[i].follower === content.account.current && list_of_[i].account_following === acc_){
         return true;
       }
-      else{
-        return false;
-      }
     }
+    return false;
 
   }
 
@@ -30,7 +26,6 @@ const Home = () => {
     async function initialize() {
       const result = await content.contract.current.methods.getData().call();
       setList(result);
-      console.log(list_of_users)
     }
     initialize();
   })
@@ -39,15 +34,14 @@ const Home = () => {
     async function fun1(){
       const result2 = await content.contract.current.methods.return_follow().call();
       setList_of(result2);
-      console.log(list_of_)
     }
     fun1();
   })
 
   const HandleFollow = async(account) => {
     const result = await content.contract.current.methods.Follow(content.account.current, account).send({ from: content.account.current });
-    console.log(result);
     alert("Follow Success!!")
+    console.log(result);
   }
 
   return (
@@ -63,14 +57,14 @@ const Home = () => {
         <div className={classes.break}></div>
         {
           list_of_users.map((e) => {
-            return <div className={classes.user_comp}>
+            return <Link to={`../profile/${e.user_address} `} state={{ from: `${e.user_address}` }} className={classes.user_comp}>
               <img src={`https://${e.user_CID}.ipfs.w3s.link/${e.user_img_filename}`} alt='' className={classes.prof_img} />
               <h3 className={classes.p}>{e.username}</h3>
               {
                 (Check_to_follow(e.user_address) === true)?<button className={classes.following}>Following</button>
                 :<button className={classes.follow} onClick={() => HandleFollow(e.user_address)}>Follow</button>
               }
-            </div>
+            </Link>
           })
         }
       </div>

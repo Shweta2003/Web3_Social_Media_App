@@ -14,6 +14,7 @@ const EditMe = () => {
   const navigate = useNavigate();
   const [fileopt, getfileopt] = useState(my_pro);
   const MyCID = useRef("");
+  const currImg = useRef(my_pro)
 
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGNBNjQwNkM0RjE5MmI2OWU4YjU1NTJkZjMyOEQyRkFBMTgzZkVGMEQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODgwNDkwNDgxNzksIm5hbWUiOiJibG9nQXBwIn0.Ty9pCFWvaOrEGVhz_5xcSA_ZmWFyqabgc-e19bhZb8g";
 
@@ -52,12 +53,12 @@ const EditMe = () => {
       }
     }
     initialize();
-  }, [])
+  }, [content])
 
   const onImageChange = (event) => {
     setUserDetail({ ...userDetail, ImgFileName : ""})
     if (event.target.files && event.target.files[0]) {
-      setUserDetail({ ...userDetail, ImgLink: URL.createObjectURL(event.target.files[0]) })
+      currImg.current = URL.createObjectURL(event.target.files[0])
       getfileopt(event.target.files[0])
     }
   }
@@ -121,7 +122,7 @@ const EditMe = () => {
           <div className={classes.break2}></div>
           <div className={classes.miss}>
             {
-              (userDetail.ImgFileName === "") ? <img src={userDetail.ImgLink} alt='' className={classes.img} />
+              (userDetail.ImgFileName === "") ? <img src={currImg.current} alt='' className={classes.img} />
                 : <img src={`https://${userDetail.ImgLink}.ipfs.w3s.link/${userDetail.ImgFileName}`} alt='' className={classes.img} />
             }
             <label className={classes.label}>

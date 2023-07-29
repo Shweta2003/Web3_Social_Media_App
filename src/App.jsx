@@ -5,7 +5,7 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import EditProfile from './pages/EditProfile'
 import Navbar from './components/Navbar/Navbar'
-import { useState, useEffect, createContext, useRef } from 'react';
+import {createContext, useRef } from 'react';
 import ABI from './components/common/ABI'
 import Web3 from 'web3';
 
@@ -32,14 +32,12 @@ const App = () => {
     account.current = userAccount[0];
 
     // setting connection to contract
-    contract.current = new get.eth.Contract(ABI, "0x600B0452AA665B572eBBd7EB87c0F490CFeF8C60");
+    contract.current = new get.eth.Contract(ABI, "0x0335A65380158320dEC6F9b5D7d79cf7134D560C");
   }
 
   const OldUser = async() => {
     const result = await contract.current.methods.Get_registered().call();
-    console.log(result);
     const newres = result.filter(acc => (acc === account.current))
-    console.log(result)
     if(newres.length > 0){
       return true;
     }else{
@@ -53,7 +51,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/home' element={<HomePage />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/profile/:id' element={<Profile />} />
         <Route path='/editMyProfile' element={<EditProfile />} />
 
       </Routes>
