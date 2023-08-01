@@ -1,0 +1,84 @@
+.main{
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgba(235, 235, 235, 0.799);
+}
+
+.c2, .c1{
+    width: 62%;
+    height: 600px;
+    background-color: white;
+    margin-top: 3%;
+    border-radius: 10px;
+    box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 3%;
+}
+
+.c1{
+    width: 30%;
+}
+
+.head{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #145693;
+    margin-left: 45px;
+    margin-top: 50px;
+    font-weight: lighter;
+}
+
+.break{
+    width: 90%;
+    margin: auto;
+    height: 2px;
+    background-color: #145693;
+}
+
+.prof_img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 15px;
+    
+
+}
+
+.user_comp{
+    display: flex;
+    width: 91%;
+    margin: 20px auto;
+    align-items: center;
+    justify-content: space-between;
+    background-color: aliceblue;
+    border-radius: 15px;
+    position: relative;
+    z-index: 2;
+    text-decoration: none;
+}
+
+.follow, .following{
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #145693;
+    color: white;
+    border: none;
+    width: 120px;
+    position: relative;
+    z-index: 4;
+    margin-right: 15px;
+}
+
+.following{
+    background-color: #84aed6;
+}
+
+.p{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #145693;
+    font-size: 25px;
+    font-weight: lighter;
+    margin-left: -60px;
+}

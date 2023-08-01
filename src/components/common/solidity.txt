@@ -1,0 +1,100 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract user {
+    address [] public currently_logged_in;
+    address [] public registered_users;
+    userData [] public allUsers;
+    struct following_det{
+        address follower;
+        address account_following;
+    }
+
+    following_det [] public followers;
+
+    struct userData{
+        address user_address;
+        string username;
+        string user_CID;
+        string user_img_filename;
+        string DOB;
+        string gender;
+        string desc;
+        string email;
+    }
+
+    // function to check if user is registered or not, if not then we can have some default values
+    function Check_if_registered(address _user_address) public view returns (bool){
+        bool found = false;
+        for(uint i = 0 ; i < registered_users.length; i ++){
+            if(registered_users[i] == _user_address){
+                found = true;
+                return found;
+            }
+        }
+        return found;
+    }
+
+    function Get_registered() public view returns (address [] memory){
+        return registered_users;
+    }
+
+    // find index
+    function GetIndex(address _user_address)public view returns (uint){
+        for (uint i = 0 ; i < allUsers.length; i ++){
+            if(allUsers[i].user_address == _user_address){
+                return i;
+            }
+        }
+        return allUsers.length;
+    }
+
+    // function to add new details to the profile
+    function AddProfileDetails(string memory _username, string memory _gender, string memory my_CID, string memory _user_img_filename, string memory _DOB, string memory _desc, string memory _email, address _user_address)public {
+
+        if(Check_if_registered(_user_address) == false){
+            registered_users.push(_user_address);
+            allUsers.push(userData({user_address : _user_address, username : _username, user_CID : my_CID, user_img_filename : _user_img_filename,gender : _gender, DOB : _DOB,desc : _desc,email : _email}));
+        }
+        else{
+            allUsers[GetIndex(_user_address)] = userData({user_address : _user_address, username : _username, user_CID : my_CID, user_img_filename : _user_img_filename,gender : _gender, DOB : _DOB,desc : _desc,email : _email});
+        }
+    }
+
+    // function to add follower
+    function Follow(address _user_address, address _account_to_follow) public {
+        require(Check_if_registered(_user_address) == true, " First Register ");
+        followers.push(following_det({follower : _user_address, account_following : _account_to_follow}));
+    }
+
+    function return_follow() public view returns (following_det [] memory){
+        return followers;
+    }
+
+    // function to get all user details
+    function getData() public view returns (userData [] memory){
+        return allUsers;
+    }
+
+    // login
+    function Login(address _user_address) public {
+        currently_logged_in.push(_user_address);
+    }
+
+    // currently logged user
+    function all_currently_logged_in() public view returns(address [] memory){
+         return currently_logged_in;
+    }
+
+    // logout
+    function LogOut(address _user_address) public{
+        for(uint i = 0 ; i < currently_logged_in.length; i ++){
+            if(currently_logged_in[i] == _user_address){
+                address temp = currently_logged_in[currently_logged_in.length - 1];
+                currently_logged_in[currently_logged_in.length - 1] = _user_address;
+                currently_logged_in[i] = temp;
+            }
+        }
+        currently_logged_in.pop();
+    }
+}
