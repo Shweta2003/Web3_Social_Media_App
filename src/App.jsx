@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import EditProfile from './pages/EditProfile'
+import CreateNewPost from './pages/CreateNewPost'
 import Navbar from './components/Navbar/Navbar'
 import {createContext, useRef } from 'react';
 import ABI from './components/common/ABI'
@@ -53,6 +54,7 @@ const App = () => {
         <Route path='/home' element={<HomePage />} />
         <Route path='/profile/:id' element={<Profile />} />
         <Route path='/editMyProfile' element={<EditProfile />} />
+        <Route path='/createNewPost' element={<CreateNewPost />} />
 
       </Routes>
       </WebVariable.Provider>

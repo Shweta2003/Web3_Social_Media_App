@@ -1,9 +1,8 @@
-
-
 import abi from './ABI';
 import Web3 from 'web3';
 import { useState, useEffect } from 'react';
 import { Web3Storage, getFilesFromPath } from 'web3.storage'
+import classes from './NewPost.module.css'
 
 function NewPost() {
 
@@ -14,10 +13,10 @@ function NewPost() {
   const [showbtn, setshowbtn] = useState(false);
   const [allData, setAllData] = useState();
   const [imgname, setimgname] = useState([{
-    name:"",
-    imgcid:"",
-    imgname:"",
-    text:""
+    name: "",
+    imgcid: "",
+    imgname: "",
+    text: ""
   }]);
 
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGNBNjQwNkM0RjE5MmI2OWU4YjU1NTJkZjMyOEQyRkFBMTgzZkVGMEQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODgwNDkwNDgxNzksIm5hbWUiOiJibG9nQXBwIn0.Ty9pCFWvaOrEGVhz_5xcSA_ZmWFyqabgc-e19bhZb8g";
@@ -55,7 +54,7 @@ function NewPost() {
     if (!res.ok) {
       throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
     }
-    else{
+    else {
       return cid;
     }
 
@@ -65,7 +64,7 @@ function NewPost() {
   // code to add a new blog
   // add cid
   async function main() {
-    
+
 
   }
 
@@ -90,7 +89,7 @@ function NewPost() {
   };
 
   // add data to web3 
-  const AddDataToMain = async() => {
+  const AddDataToMain = async () => {
 
     if (!token) {
       return alert('A token is needed. You can create one on https://web3.storage')
@@ -110,7 +109,7 @@ function NewPost() {
 
       const files = makeFileObjects();
       console.log("files" + files);
-      const cidimg =await storage.put(files)
+      const cidimg = await storage.put(files)
       setcid(cidimg);
       console.log('stored files with cid:', cidimg)
 
@@ -120,7 +119,7 @@ function NewPost() {
 
     try {
       const accounts = await web3.eth.getAccounts();
-      const result = await contract.methods.addBlog(name, cidmain, fileopt.name, textc ).send({ from: accounts[0]});
+      const result = await contract.methods.addBlog(name, cidmain, fileopt.name, textc).send({ from: accounts[0] });
       console.log(result);
       alert("New Blog Added!!");
 
@@ -148,28 +147,40 @@ function NewPost() {
   }
 
   return (
-    <div className="App">
-      <form onSubmit={handleSubmit}>
-        <label>NAME OF AUTHOR : </label>
-        <input type="text" required onChange={(e) => setname(e.target.value)} />
-        <br />
-        <label>IMAGE : </label>
-        <input type="file" required onChange={handleImageChange} />
-        <br />
-        <label>CONTENT : </label>
-        <textarea required onChange={(e) => settextc(e.target.value)} />
-        <button type="submit">Upload</button>
-      </form>
-      <button onClick={showAll} >SHOW ALL</button>
-      {
-        (showbtn === true)?
-         <img src={`https://${allData[7].imgFileCID}.ipfs.w3s.link/${allData[7].imgFileName}`} alt="" />
-        // allData.map((e) => {
-        //   // const mycid = retrieveFiles(e.imgFileCID);
-        //   return <img src={`https://ipfs.io/ipfs/${e.imgFileCID}/${e.imgFileName}`} alt="" />})
-        :console.log()
-      }
-      
+    <div className={classes.main}>
+    <div className={classes.m2}>
+      <h1 className={classes.head}>New Post</h1>
+      <div className={classes.break}></div>
+      <div className="App">
+        <form onSubmit={handleSubmit}>
+          <label>NAME OF AUTHOR : </label>
+          <input type="text" required onChange={(e) => setname(e.target.value)} />
+          <br />
+          <br />
+          <label>IMAGE : </label>
+          <input type="file" required onChange={handleImageChange} />
+          <br />
+          <br />
+          <label>CONTENT : </label>
+          <textarea required onChange={(e) => settextc(e.target.value)} />
+          <br />
+          <button type="submit">Upload</button>
+          <br />
+          <br />
+          <br />
+        </form>
+        <button onClick={showAll} >SHOW ALL</button>
+        {/* {
+          (showbtn === true) ?
+            <img src={`https://${allData[7].imgFileCID}.ipfs.w3s.link/${allData[7].imgFileName}`} alt="" />
+            // allData.map((e) => {
+            //   // const mycid = retrieveFiles(e.imgFileCID);
+            //   return <img src={`https://ipfs.io/ipfs/${e.imgFileCID}/${e.imgFileName}`} alt="" />})
+            : console.log()
+        } */}
+
+      </div>
+    </div>
     </div>
   );
 }

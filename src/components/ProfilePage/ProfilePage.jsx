@@ -69,6 +69,10 @@ const ProfilePage = () => {
     navigate('../editMyProfile')
   }
 
+  const newPostClick = () => {
+    navigate('../createNewPost')
+  }
+
   return (
     <div className={classes.main}>
       <div className={classes.top_part}>
@@ -85,6 +89,11 @@ const ProfilePage = () => {
           </div>
           {
             (location.state.from === content.account.current) ? <button className={classes.btn} onClick={HandleClick}>Edit Your Profile</button>
+              : console.log()
+          }
+
+          {
+            (location.state.from === content.account.current) ? <button className={classes.btn} onClick={newPostClick}>Create a New Post</button>
               : console.log()
           }
         </div>
