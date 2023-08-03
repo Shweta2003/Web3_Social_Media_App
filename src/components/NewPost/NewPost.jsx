@@ -139,7 +139,7 @@ function NewPost() {
     try {
       const dataa = await contract.methods.displayAllBlogs().call();
       setAllData(dataa);
-      console.log(dataa[4].imgFileCID);
+      //console.log(dataa[4].imgFileCID);
       console.log(allData);
     } catch (error) {
       console.log(error);
@@ -170,14 +170,32 @@ function NewPost() {
           <br />
         </form>
         <button onClick={showAll} >SHOW ALL</button>
-        {/* {
+        {
           (showbtn === true) ?
-            <img src={`https://${allData[7].imgFileCID}.ipfs.w3s.link/${allData[7].imgFileName}`} alt="" />
+            //<img src={`https://${allData[7].imgFileCID}.ipfs.w3s.link/${allData[7].imgFileName}`} alt="" />
+            
             // allData.map((e) => {
             //   // const mycid = retrieveFiles(e.imgFileCID);
             //   return <img src={`https://ipfs.io/ipfs/${e.imgFileCID}/${e.imgFileName}`} alt="" />})
+            
+            <div>
+              {allData.map((data, index) => (
+                <div key={index}>
+                  <h2>{data.name}</h2>
+                  {data.imgFileName && (
+                    <img
+                      src={`https://${data.imgFileCID}.ipfs.w3s.link/${data.imgFileName}`}
+                      alt=""
+                      width="200"
+                    />
+                  )}
+                  <p>{data.content}</p>
+                </div>
+              ))}
+            </div>
+            
             : console.log()
-        } */}
+        }
 
       </div>
     </div>

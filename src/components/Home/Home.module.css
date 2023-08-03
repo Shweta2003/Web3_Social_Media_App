@@ -7,14 +7,17 @@
     background-color: rgba(235, 235, 235, 0.799);
 }
 
-.c2, .c1{
-    width: 62%;
-    height: 600px;
-    background-color: white;
-    margin-top: 3%;
-    border-radius: 10px;
-    box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.25);
-    margin-bottom: 3%;
+.c2,
+.c1 {
+  width: 62%;
+  min-height: 600px;
+  background-color: white;
+  margin-top: 3%;
+  border-radius: 10px;
+  box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 3%;
+  display: flex; 
+  flex-direction: column; 
 }
 
 .c1{
