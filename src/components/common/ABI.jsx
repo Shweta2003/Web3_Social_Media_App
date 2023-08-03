@@ -1,6 +1,39 @@
-// contract ID = 0x600B0452AA665B572eBBd7EB87c0F490CFeF8C60
+// contract ID = 0x45D7A8B02B95256B8393B5df9D930d1905d452ce
 
 const ABI =  [
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_user_address",
+                "type": "address"
+            },
+            {
+                "internalType": "string",
+                "name": "_title",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_desc",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_file_name",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_file_CID",
+                "type": "string"
+            }
+        ],
+        "name": "AddNewPost",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
     {
         "inputs": [
             {
@@ -69,6 +102,51 @@ const ABI =  [
         "type": "function"
     },
     {
+        "inputs": [],
+        "name": "DisplayPosts",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "address",
+                        "name": "user_address",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "title",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "file_CID",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "file_name",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "like",
+                        "type": "int256"
+                    }
+                ],
+                "internalType": "struct user.Post[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [
             {
                 "internalType": "address",
@@ -116,6 +194,19 @@ const ABI =  [
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_file_CID",
+                "type": "string"
+            }
+        ],
+        "name": "Like_post",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -206,6 +297,50 @@ const ABI =  [
                 "internalType": "address[]",
                 "name": "",
                 "type": "address[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "all_posts",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "user_address",
+                "type": "address"
+            },
+            {
+                "internalType": "string",
+                "name": "title",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "desc",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "file_CID",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "file_name",
+                "type": "string"
+            },
+            {
+                "internalType": "int256",
+                "name": "like",
+                "type": "int256"
             }
         ],
         "stateMutability": "view",

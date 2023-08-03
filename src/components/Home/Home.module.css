@@ -75,10 +75,15 @@
     background-color: #84aed6;
 }
 
+.p2{
+    text-decoration: none;
+}
+
 .p{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #145693;
     font-size: 25px;
+    text-decoration: none;
     font-weight: lighter;
     margin-left: -60px;
 }

@@ -13,6 +13,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const [allData, setAllData] = useState([]);
   const [my_list, set_my_list] = useState([]);
+  const [addPost, allowAddPost] = useState(false);
 
   const [userDetail, setUserDetail] = useState({
     ImgLink: my_pro,
@@ -58,12 +59,13 @@ const ProfilePage = () => {
         const result = await content.contract.current.methods.return_follow().call();
         const res1 = result.filter(foo => foo.follower === location.state.from);
         set_my_list(res1);
+        allowAddPost(true);
         const res2 = result.filter(foo => foo.account_following === location.state.from);
         setUserDetail({ ...userDetail, Followers: res2.length })
       }
     }
     Myfun();
-  })
+  }, [])
 
   const HandleClick = () => {
     navigate('../editMyProfile')
@@ -93,8 +95,10 @@ const ProfilePage = () => {
           }
 
           {
-            (location.state.from === content.account.current) ? <button className={classes.btn} onClick={newPostClick}>Create a New Post</button>
-              : console.log()
+            (addPost === true) ?
+              (location.state.from === content.account.current) ? <button className={classes.btn1} onClick={newPostClick}>Create a New Post</button>
+                : console.log()
+              : console.log("first register to add post")
           }
         </div>
       </div>
