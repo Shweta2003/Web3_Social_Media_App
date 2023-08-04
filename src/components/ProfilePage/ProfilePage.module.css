@@ -5,6 +5,7 @@
     justify-content: center;
     flex-direction: column;
     background-color: whitesmoke;
+    overflow-x: hidden;
 }
 
 .top_part{
@@ -98,10 +99,13 @@
 
 .m2{
     width: 50%;
+    align-items: center;
 }
 
 .head{
-    padding: 40px;
+    width: 100%;
+    text-align: center;
+    padding-top: 40px;
     padding-bottom: 10px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #145693;

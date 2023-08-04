@@ -1,12 +1,14 @@
-import { useState, useEffect, useContext, useNavigate, useRef } from 'react';
-import { Web3Storage, getFilesFromPath } from 'web3.storage'
+import { useState, useEffect, useContext, useRef } from 'react';
+import { Web3Storage} from 'web3.storage'
 import classes from './NewPost.module.css'
+import { useNavigate } from 'react-router-dom';
 import { WebVariable } from '../../App';
 
 function AddNewPost() {
+  const naav = useNavigate();
   const content = useContext(WebVariable);
   const MyCID = useRef("");
-
+  
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGNBNjQwNkM0RjE5MmI2OWU4YjU1NTJkZjMyOEQyRkFBMTgzZkVGMEQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODgwNDkwNDgxNzksIm5hbWUiOiJibG9nQXBwIn0.Ty9pCFWvaOrEGVhz_5xcSA_ZmWFyqabgc-e19bhZb8g";
 
   const [userDetail, setUserDetail] = useState({
@@ -51,9 +53,11 @@ function AddNewPost() {
     }
 
     try {
-      // Profile Edit function
+      // Add Post
       const result = await content.contract.current.methods.AddNewPost(content.account.current, userDetail.Title, userDetail.Description, userDetail.FileName.name, MyCID.current).send({ from: content.account.current });
       console.log(result);
+      alert("Post Added Successfully!!");
+      naav(`../profile/${content.account.current}`,{ state:{ from: `${content.account.current}` }});
 
     } catch (error) {
       alert("couldn't edit profile" );
