@@ -1,12 +1,12 @@
 import React from 'react'
-import NewPost from '../components/NewPost/NewPost'
 import NavAfterLogin from '../components/Navbar/NavAfterLogin'
+import AddNewPost from '../components/NewPost/AddNewPost'
 
 const CreateNewPost = () => {
     return (
       <>
         <NavAfterLogin/>
-        <NewPost/>
+        <AddNewPost/>
       </>
     )
   }

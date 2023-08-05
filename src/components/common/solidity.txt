@@ -97,4 +97,38 @@ contract user {
         }
         currently_logged_in.pop();
     }
+
+
+
+    // posts
+
+    Post [] public all_posts;
+
+    struct Post{
+        address user_address;
+        string title;
+        string desc;
+        string file_CID;
+        string file_name;
+        int like;
+    }
+
+    // function to add post
+    function AddNewPost(address _user_address, string memory _title, string memory _desc, string memory _file_name, string memory _file_CID) public {
+        all_posts.push(Post({user_address : _user_address, title : _title, desc : _desc, file_CID : _file_CID, file_name : _file_name, like : 0}));
+    }
+
+    // function to display all posts
+    function DisplayPosts() public view  returns (Post [] memory){
+        return all_posts;
+    }
+
+    // like a post
+    function Like_post(string memory _file_CID) public {
+        for(uint i = 0 ; i < all_posts.length ; i ++){
+            if(keccak256(abi.encodePacked(all_posts[i].file_CID)) == keccak256(abi.encodePacked(_file_CID))){
+                all_posts[i].like += 1;
+            }
+        }
+    }
 }

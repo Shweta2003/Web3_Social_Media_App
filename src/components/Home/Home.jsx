@@ -1,23 +1,22 @@
-import React, { useState, useContext, useEffect, useRef } from 'react'
+import React, { useState, useContext, useEffect} from 'react'
 import classes from './Home.module.css'
 import { WebVariable } from '../../App';
 import { Link } from 'react-router-dom';
 import Post from '../Post/Post';
-import post_placeholder from '../../Assets/post_placeholder.png';
 
 const Home = () => {
 
   const content = useContext(WebVariable);
   const [list_of_users, setList] = useState([]);
-  const [list_of_, setList_of] = useState([]); 
+  const [list_of_, setList_of] = useState([]);
   const [allData, setAllData] = useState([]); // Store the post information
 
   const Check_to_follow = (acc_) => {
-    if(acc_ === content.account.current){
+    if (acc_ === content.account.current) {
       return true;
     }
-    for(var i = 0 ; i < list_of_.length ; i ++){
-      if(list_of_[i].follower === content.account.current && list_of_[i].account_following === acc_){
+    for (var i = 0; i < list_of_.length; i++) {
+      if (list_of_[i].follower === content.account.current && list_of_[i].account_following === acc_) {
         return true;
       }
     }
@@ -29,8 +28,9 @@ const Home = () => {
   const getFromWeb3 = async () => {
     try {
       if (content.contract?.current) { // Check if content.contract.current is defined
-        const dataa = await content.contract.current.methods.displayAllBlogs().call();
+        const dataa = await content.contract.current.methods.DisplayPosts().call();
         setAllData(dataa);
+
       }
     } catch (error) {
       console.log(error);
@@ -55,16 +55,24 @@ const Home = () => {
       }
     }
     fun1();
-  }, []);
+  }, [])
+
 
   useEffect(() => {
     getFromWeb3();
-  }, []); 
+    console.log(allData)
+  }, [allData]);
 
-  const HandleFollow = async(account) => {
-    const result = await content.contract.current.methods.Follow(content.account.current, account).send({ from: content.account.current });
-    alert("Follow Success!!")
-    console.log(result);
+  const HandleFollow = async (account) => {
+    const state = await content.OldUser();
+    if (state === true) {
+      const result = await content.contract.current.methods.Follow(content.account.current, account).send({ from: content.account.current });
+      alert("Follow Success!!")
+      console.log(result);
+    }
+    else {
+      alert("First Register Yourself to follow other accounts");
+    }
   }
 
   return (
@@ -74,26 +82,17 @@ const Home = () => {
         <div className={classes.break}></div>
         {/* Display all posts */}
 
-        {/* {allData.map((data, index) => (
+        {allData.map((data, index) => (
           <Post
+            CID={data.file_CID}
             key={index}
-            imgSrc={`https://${data.imgFileCID}.ipfs.w3s.link/${data.imgFileName}`}
-            username={data.name}
-            caption={data.content}
+            imgSrc={`https://${data.file_CID}.ipfs.w3s.link/${data.file_name}`}
+            username={data.title}
+            caption={data.desc}
+            num={data.like}
+            address={data.user_address}
           />
-        ))} */}
-
-        <Post
-          imgSrc={post_placeholder}
-          username={"testUser"}
-          caption={"test caption"}
-        />
-
-        <Post
-          imgSrc={post_placeholder}
-          username={"testUser"}
-          caption={"test caption"}
-        />
+        ))}
 
       </div>
 
@@ -102,14 +101,16 @@ const Home = () => {
         <div className={classes.break}></div>
         {
           list_of_users.map((e) => {
-            return <Link to={`../profile/${e.user_address} `} state={{ from: `${e.user_address}` }} className={classes.user_comp}>
-              <img src={`https://${e.user_CID}.ipfs.w3s.link/${e.user_img_filename}`} alt='' className={classes.prof_img} />
-              <h3 className={classes.p}>{e.username}</h3>
+            return <div className={classes.user_comp}>
+              <Link to={`../profile/${e.user_address} `} state={{ from: `${e.user_address}` }}>
+                <img src={`https://${e.user_CID}.ipfs.w3s.link/${e.user_img_filename}`} alt='' className={classes.prof_img} /></Link>
+              <Link to={`../profile/${e.user_address} `} state={{ from: `${e.user_address}` }} className={classes.p2}><h3 className={classes.p}>{e.username}</h3></Link>
+
               {
-                (Check_to_follow(e.user_address) === true)?<button className={classes.following}>Following</button>
-                :<button className={classes.follow} onClick={() => HandleFollow(e.user_address)}>Follow</button>
+                (Check_to_follow(e.user_address) === true) ? <button className={classes.following}>Following</button>
+                  : <button className={classes.follow} onClick={() => HandleFollow(e.user_address)}>Follow</button>
               }
-            </Link>
+            </div>
           })
         }
       </div>

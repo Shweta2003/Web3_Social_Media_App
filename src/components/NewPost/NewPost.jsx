@@ -202,5 +202,3 @@ function NewPost() {
     </div>
   );
 }
-
-export default NewPost;

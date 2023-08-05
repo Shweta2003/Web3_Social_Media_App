@@ -12,7 +12,7 @@ const NavAfterLogin = () => {
     const HandleLogout = async() => {
         const result = await content.contract.current.methods.LogOut(content.account.current).send({ from: content.account.current });
         console.log(result);
-        navigate('../',{state:`${content.account.current}`})
+        navigate('/')
 
     }
     return (

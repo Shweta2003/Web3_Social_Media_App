@@ -1,18 +1,20 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import top_back from '../../Assets/profile_top.png'
 import my_pro from '../../Assets/profile.jpg'
 import classes from './ProfilePage.module.css'
 import '../../App.css'
 import { WebVariable } from '../../App'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
+import Post from '../Post/Post'
 
 const ProfilePage = () => {
-
-  const content = useContext(WebVariable);
-  const location = useLocation()
   const navigate = useNavigate();
+  const content = useContext(WebVariable);
+  const location = useLocation();
   const [allData, setAllData] = useState([]);
+  const [PostDet, getPostDet] = useState([]);
   const [my_list, set_my_list] = useState([]);
+  const [addPost, allowAddPost] = useState(false);
 
   const [userDetail, setUserDetail] = useState({
     ImgLink: my_pro,
@@ -29,21 +31,23 @@ const ProfilePage = () => {
     async function initialize() {
       const result = await content.contract.current.methods.getData().call();
       setAllData(result);
-      for (var i = 0; i < result.length; i++) {
-        if (result[i].user_address === location.state.from) {
-          setUserDetail(
-            {
-              ...userDetail,
-              ImgLink: result[i].user_CID,
-              ImgFileName: result[i].user_img_filename,
-              UserName: result[i].username,
-              Caption: result[i].desc,
-              sex: result[i].gender,
-              Birthday: result[i].DOB,
-              email: result[i].email
-            }
-          )
-          break;
+      if (location.state?.from) {
+        for (var i = 0; i < result.length; i++) {
+          if (result[i].user_address === location.state.from) {
+            setUserDetail(
+              {
+                ...userDetail,
+                ImgLink: result[i].user_CID,
+                ImgFileName: result[i].user_img_filename,
+                UserName: result[i].username,
+                Caption: result[i].desc,
+                sex: result[i].gender,
+                Birthday: result[i].DOB,
+                email: result[i].email
+              }
+            )
+            break;
+          }
         }
       }
 
@@ -55,15 +59,31 @@ const ProfilePage = () => {
     async function Myfun() {
       const state = await content.OldUser();
       if (state === true) {
-        const result = await content.contract.current.methods.return_follow().call();
-        const res1 = result.filter(foo => foo.follower === location.state.from);
-        set_my_list(res1);
-        const res2 = result.filter(foo => foo.account_following === location.state.from);
-        setUserDetail({ ...userDetail, Followers: res2.length })
+        if (location.state?.from) {
+          const result = await content.contract.current.methods.return_follow().call();
+          const res1 = result.filter(foo => foo.follower === location.state.from);
+          set_my_list(res1);
+          allowAddPost(true);
+          const res2 = result.filter(foo => foo.account_following === location.state.from);
+          setUserDetail({ ...userDetail, Followers: res2.length })
+        }
       }
     }
     Myfun();
-  })
+  }, [])
+
+  // Function to retrieve post data from the smart contract
+  const getFromWeb3 = async () => {
+    try {
+      if (content.contract?.current) { // Check if content.contract.current is defined
+        const dataa = await content.contract.current.methods.DisplayPosts().call();
+        getPostDet(dataa);
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const HandleClick = () => {
     navigate('../editMyProfile')
@@ -72,6 +92,15 @@ const ProfilePage = () => {
   const newPostClick = () => {
     navigate('../createNewPost')
   }
+
+  useEffect(() => {
+    getFromWeb3();
+    if(location.state?.from){
+      const p = PostDet.filter((e) => e.user_address === location.state.from);
+      console.log(p)
+      getPostDet(p);
+    }
+  }, []); 
 
   return (
     <div className={classes.main}>
@@ -88,12 +117,15 @@ const ProfilePage = () => {
             <h4 className={classes.det}>{userDetail.Caption}</h4>
           </div>
           {
-            (location.state.from === content.account.current) ? <button className={classes.btn} onClick={HandleClick}>Edit Your Profile</button>
+            (location.state?.from) ? (location.state.from === content.account.current) ? <button className={classes.btn} onClick={HandleClick}>Edit Your Profile</button>
+              : console.log()
               : console.log()
           }
-
           {
-            (location.state.from === content.account.current) ? <button className={classes.btn} onClick={newPostClick}>Create a New Post</button>
+            (location.state?.from) ? (addPost === true) ?
+              (location.state.from === content.account.current) ? <button className={classes.btn1} onClick={newPostClick}>Create a New Post</button>
+                : console.log()
+              : console.log("first register to add post")
               : console.log()
           }
         </div>
@@ -113,7 +145,20 @@ const ProfilePage = () => {
         <div className={classes.m2}>
           <h1 className={classes.head}>My Posts</h1>
           <div className={classes.break}></div>
-          <p>My Account Number : {content.account.current}</p>
+          {/* Display all posts */}
+
+        {(PostDet.filter((e) => e.user_address === location.state.from).length <= 0)?<p className={classes.iu1}>No Posts yet</p>
+         :PostDet.filter((e) => e.user_address === location.state.from).map((data, index) => (
+          <Post
+            CID={data.file_CID}
+            key={index}
+            imgSrc={`https://${data.file_CID}.ipfs.w3s.link/${data.file_name}`}
+            username={data.title}
+            caption={data.desc}
+            num={data.like}
+            address={data.user_address}
+          />
+        ))}
         </div>
 
         <div className={classes.m1}>
