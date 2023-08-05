@@ -147,18 +147,23 @@ const ProfilePage = () => {
           <div className={classes.break}></div>
           {/* Display all posts */}
 
-        {(PostDet.filter((e) => e.user_address === location.state.from).length <= 0)?<p className={classes.iu1}>No Posts yet</p>
-         :PostDet.filter((e) => e.user_address === location.state.from).map((data, index) => (
-          <Post
-            CID={data.file_CID}
-            key={index}
-            imgSrc={`https://${data.file_CID}.ipfs.w3s.link/${data.file_name}`}
-            username={data.title}
-            caption={data.desc}
-            num={data.like}
-            address={data.user_address}
-          />
-        ))}
+        {(location.state?.from)?
+            (PostDet.filter((e) => e.user_address === location.state.from).length <= 0)?
+              <p className={classes.iu1}>No Posts yet</p>
+            :PostDet.filter((e) => e.user_address === location.state.from).map((data, index) => (
+              <Post
+              CID={data.file_CID}
+              name={data.file_name}
+              key={index}
+              imgSrc={`https://${data.file_CID}.ipfs.w3s.link/${data.file_name}`}
+              username={data.title}
+              caption={data.desc}
+              num={data.like}
+              address={data.user_address}
+            />
+            ))
+          :console.log()
+        }
         </div>
 
         <div className={classes.m1}>

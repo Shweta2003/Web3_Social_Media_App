@@ -21,10 +21,16 @@
     margin-top: 30px;
   }
   
-  .postImage {
+  .postImage, .postImage1 {
     width: 400px;
     object-fit: cover;
     border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .postImage1{
+    padding: 20px;
+    scale: 0.8;
   }
   
   .postUsername {

@@ -11,9 +11,13 @@
 .top_part{
     width: 95%;
     margin-top: 2.5%;
-    box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     background-color: white;
+    border : 2px solid rgb(202, 201, 201);
+}
+
+.top_part:hover{
+    box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.25);
 }
 
 .top_back{
@@ -91,7 +95,7 @@
     background-color: white;
     width: 22.5%;
     border-radius: 10px;
-    box-shadow: 7px 7px 4px rgba(0, 0, 0, 0.25);
+    border : 2px solid rgb(202, 201, 201);
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
