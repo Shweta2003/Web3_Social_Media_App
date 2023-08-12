@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect} from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import classes from './Home.module.css'
 import { WebVariable } from '../../App';
 import { Link } from 'react-router-dom';
@@ -80,19 +80,21 @@ const Home = () => {
       <div className={classes.c2}>
         <h1 className={classes.head}>All Posts</h1>
         <div className={classes.break}></div>
-        {/* Display all posts */}
 
+        {/* Display all posts */}
         {allData.map((data, index) => (
-          <Post
-            CID={data.file_CID}
-            name={data.file_name}
-            key={index}
-            imgSrc={`https://${data.file_CID}.ipfs.w3s.link/${data.file_name}`}
-            username={data.title}
-            caption={data.desc}
-            num={data.like}
-            address={data.user_address}
-          />
+          <Link to={`/post/${index}`} key={index} state={{ post: data }}>
+            <Post
+              CID={data.file_CID}
+              name={data.file_name}
+              key={index}
+              imgSrc={`https://${data.file_CID}.ipfs.w3s.link/${data.file_name}`}
+              username={data.title}
+              caption={data.desc}
+              num={data.like}
+              address={data.user_address}
+            />
+          </Link>
         ))}
 
       </div>

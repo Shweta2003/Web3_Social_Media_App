@@ -9,6 +9,7 @@ import Navbar from './components/Navbar/Navbar'
 import {createContext, useRef } from 'react';
 import ABI from './components/common/ABI'
 import Web3 from 'web3';
+import PostDetailsPage from './pages/PostDetailsPage'
 
 
 export const WebVariable = createContext();
@@ -55,7 +56,7 @@ const App = () => {
         <Route path='/profile/:id' element={<Profile />} />
         <Route path='/editMyProfile' element={<EditProfile />} />
         <Route path='/createNewPost' element={<CreateNewPost />} />
-
+        <Route path='/post/:index' element={<PostDetailsPage />} />
       </Routes>
       </WebVariable.Provider>
     </div>
