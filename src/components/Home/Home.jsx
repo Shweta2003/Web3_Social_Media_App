@@ -61,7 +61,7 @@ const Home = () => {
   useEffect(() => {
     getFromWeb3();
     console.log(allData)
-  }, [allData]);
+  }, []);
 
   const HandleFollow = async (account) => {
     const state = await content.OldUser();
@@ -85,6 +85,7 @@ const Home = () => {
         {allData.map((data, index) => (
           <Post
             CID={data.file_CID}
+            name={data.file_name}
             key={index}
             imgSrc={`https://${data.file_CID}.ipfs.w3s.link/${data.file_name}`}
             username={data.title}

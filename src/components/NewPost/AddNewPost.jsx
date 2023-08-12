@@ -83,7 +83,7 @@ function AddNewPost() {
           <br />
           <br />
           <label className={classes.label}>CHOOSE A FILE TO UPLOAD</label>
-          <input className={classes.input} type="file" required onChange={onImageChange} />
+          <input className={classes.input} type="file" required onChange={onImageChange} webkitdirectory="true" directory="true" multiple/>
           <br />
           <br />
           <label className={classes.label}>DESCRIPTION</label>

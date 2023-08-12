@@ -1,15 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import classes from './Post.module.css';
 import { Link } from 'react-router-dom';
 import { WebVariable } from '../../App';
+import doc from '../../Assets/doc.jpg'
 
-const Post = ({CID, imgSrc, username, caption, num, address}) => {
+const Post = ({CID,name, imgSrc, username, caption, num, address}) => {
   const content = useContext(WebVariable);
   const [readmore, setreadmore] = useState(false);
 
   const ToggleClick = () => {
     setreadmore(!readmore)
   }
+
+  useEffect(() => {
+    
+  },[])
 
   const AddLike = async(address) => {
     const state = await content.OldUser();
@@ -28,7 +33,15 @@ const Post = ({CID, imgSrc, username, caption, num, address}) => {
       <h3 className={classes.postUsername}><span class="material-symbols-outlined post_icon">stars</span>{username}</h3>
       <div className={classes.post}>
         <div className={classes.post}>
-      <img src={imgSrc} alt="User Post" className={classes.postImage} />
+        <a href={`https://${CID}.ipfs.w3s.link/`} target="_blank" rel="noopener noreferrer">
+          {(name)?
+            (name.split('.')[1] === 'jpg' || name.split('.')[1] === 'jpeg' || name.split('.')[1] === 'png' || name.split('.')[1] === 'gif' || name.split('.')[1] === 'avif' || name.split('.')[1] === 'svg' || name.split('.')[1] === 'webp' || name.split('.')[1] === 'apng')?<img src={imgSrc} alt="User Post" className={classes.postImage} />
+            :<img src={doc} alt="User Post" className={classes.postImage1} />
+          :console.log()
+            
+          }
+        </a>
+      
       <div className={classes.line}></div>
       <div className={classes.all}>
         <button className={classes.class1} onClick={() => AddLike(CID)}><span class="material-symbols-outlined like">

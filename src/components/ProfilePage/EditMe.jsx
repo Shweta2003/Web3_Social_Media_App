@@ -1,5 +1,3 @@
-// work to do : add gender, followers, following
-
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import my_pro from '../../Assets/profile.jpg'
 import classes from './ProfilePage.module.css'
