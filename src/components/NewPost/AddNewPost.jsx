@@ -8,6 +8,7 @@ function AddNewPost() {
   const naav = useNavigate();
   const content = useContext(WebVariable);
   const MyCID = useRef("");
+  const date =  new Date();
   
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGNBNjQwNkM0RjE5MmI2OWU4YjU1NTJkZjMyOEQyRkFBMTgzZkVGMEQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODgwNDkwNDgxNzksIm5hbWUiOiJibG9nQXBwIn0.Ty9pCFWvaOrEGVhz_5xcSA_ZmWFyqabgc-e19bhZb8g";
 
@@ -54,7 +55,7 @@ function AddNewPost() {
 
     try {
       // Add Post
-      const result = await content.contract.current.methods.AddNewPost(content.account.current, userDetail.Title, userDetail.Description, userDetail.FileName.name, MyCID.current).send({ from: content.account.current });
+      const result = await content.contract.current.methods.AddNewPost(content.account.current, userDetail.Title, userDetail.Description, userDetail.FileName.name, MyCID.current, date.toLocaleDateString()).send({ from: content.account.current });
       console.log(result);
       alert("Post Added Successfully!!");
       naav(`../profile/${content.account.current}`,{ state:{ from: `${content.account.current}` }});

@@ -34,7 +34,7 @@ const App = () => {
     account.current = userAccount[0];
 
     // setting connection to contract
-    contract.current = new get.eth.Contract(ABI, "0x45D7A8B02B95256B8393B5df9D930d1905d452ce");
+    contract.current = new get.eth.Contract(ABI, "0xD09d9522a9bD483C66c5A130Ba0d806026aeCf86");
   }
 
   const OldUser = async() => {

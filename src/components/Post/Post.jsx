@@ -4,17 +4,13 @@ import { Link } from 'react-router-dom';
 import { WebVariable } from '../../App';
 import doc from '../../Assets/doc.jpg'
 
-const Post = ({CID,name, imgSrc, username, caption, num, address}) => {
+const Post = ({CID,name, imgSrc, username, caption, num, address, date, viewers}) => {
   const content = useContext(WebVariable);
   const [readmore, setreadmore] = useState(false);
 
   const ToggleClick = () => {
     setreadmore(!readmore)
   }
-
-  useEffect(() => {
-    
-  },[])
 
   const AddLike = async(address) => {
     const state = await content.OldUser();
@@ -33,14 +29,14 @@ const Post = ({CID,name, imgSrc, username, caption, num, address}) => {
       <h3 className={classes.postUsername}><span class="material-symbols-outlined post_icon">stars</span>{username}</h3>
       <div className={classes.post}>
         <div className={classes.post}>
-        <a href={`https://${CID}.ipfs.w3s.link/`} target="_blank" rel="noopener noreferrer">
+        <Link to={`../post/${CID}`} state={{CID : `${CID}`,name : `${name}`, imgSrc : `${imgSrc}`, username : `${username}`, caption : `${caption}`, num : `${num.toString()}`, address : `${address}`, date : `${date}`, viewers : `${viewers}`}}>
           {(name)?
             (name.split('.')[1] === 'jpg' || name.split('.')[1] === 'jpeg' || name.split('.')[1] === 'png' || name.split('.')[1] === 'gif' || name.split('.')[1] === 'avif' || name.split('.')[1] === 'svg' || name.split('.')[1] === 'webp' || name.split('.')[1] === 'apng')?<img src={imgSrc} alt="User Post" className={classes.postImage} />
             :<img src={doc} alt="User Post" className={classes.postImage1} />
           :console.log()
             
           }
-        </a>
+        </Link>
       
       <div className={classes.line}></div>
       <div className={classes.all}>
