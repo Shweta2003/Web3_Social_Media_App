@@ -60,7 +60,6 @@ const Home = () => {
 
   useEffect(() => {
     getFromWeb3();
-    console.log(allData)
   }, []);
 
   const HandleFollow = async (account) => {
