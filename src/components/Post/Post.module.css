@@ -131,9 +131,9 @@
   }
 
   .special{
-    margin-left: -60px;
-    margin-top: 40px;
-    width: 50%;
+    margin-bottom: 40px;
+    margin-left: -100px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -215,5 +215,11 @@
     font-size: 25px;
     color: white;
     background-color: #145693;
+  }
+
+  .detail{
+    font-size: 17px;
+    text-align: justify;
+    margin-bottom: -20px;
   }
   

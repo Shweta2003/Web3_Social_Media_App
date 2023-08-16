@@ -8,8 +8,6 @@ import doc from '../../Assets/doc.jpg'
 const PostDetailsPage = () => {
   const location = useLocation();
   const content = useContext(WebVariable);
-  const post = location.state;
-  console.log(post)
 
   const AddLike = async (address) => {
     const state = await content.OldUser();
@@ -49,6 +47,10 @@ const PostDetailsPage = () => {
       </div>
       {
         location.state?<div className={classes.ext_but}>
+          <div className={classes.special}>
+              <h3 className={classes.make1}><span class="material-symbols-outlined likea">visibility</span><span className={classes.sp1}>{location.state.viewers} Views</span></h3>
+              <h3 className={classes.make1}> <span class="material-symbols-outlined likea">favorite</span><span className={classes.sp1}>{location.state.num} Likes</span></h3>
+            </div>
           <a href={`https://${location.state.CID}.ipfs.w3s.link/`} target="_blank" rel="noopener noreferrer" className={classes.postk1} to={`../profile/${location.state.address} `} state={{ from: `${location.state.address}` }}>View Post</a>
           <Link className={classes.postk1} to={`../profile/${location.state.address} `} state={{ from: `${location.state.address}` }}>View Profile</Link>
       </div>
@@ -61,14 +63,11 @@ const PostDetailsPage = () => {
       {
         (location.state) ?
           <div className={classes.right_part}>
-            <h4 className={classes.tt}><span style={{ color: "#649dd2" }}>{location.state.address}</span> Collection</h4>
             <h3 className={classes.postUsername1}><span class="material-symbols-outlined post_icon">stars</span>
               {location.state.username}</h3>
             <h4 className={classes.tt}>Owned By <span style={{ color: "#649dd2" }}>{location.state.address}</span></h4>
-            <div className={classes.special}>
-              <h3 className={classes.make1}><span class="material-symbols-outlined likea">visibility</span><span className={classes.sp1}>{location.state.viewers} Views</span></h3>
-              <h3 className={classes.make1}> <span class="material-symbols-outlined likea">favorite</span><span className={classes.sp1}>{location.state.num} Likes</span></h3>
-            </div>
+
+            <div className={classes.detail}>{location.state.caption}</div>
 
             <div className={classes.all_dett}>
               <h2 className={classes.hh}><span class="material-symbols-outlined likea">
@@ -82,7 +81,7 @@ const PostDetailsPage = () => {
 
               <div className={classes.s1}>
                 <p className={classes.lt}>Contract Address</p>
-                <p className={classes.rt}>0xD09d952...aeCf86</p>
+                <p className={classes.rt}>0xDc7e8B8a0...68861</p>
               </div>
 
               <div className={classes.s1}>

@@ -9,6 +9,7 @@ function AddNewPost() {
   const content = useContext(WebVariable);
   const MyCID = useRef("");
   const date =  new Date();
+  const [fileornot,setfileornot] = useState(false);
   
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGNBNjQwNkM0RjE5MmI2OWU4YjU1NTJkZjMyOEQyRkFBMTgzZkVGMEQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODgwNDkwNDgxNzksIm5hbWUiOiJibG9nQXBwIn0.Ty9pCFWvaOrEGVhz_5xcSA_ZmWFyqabgc-e19bhZb8g";
 
@@ -18,6 +19,10 @@ function AddNewPost() {
     Title: "",
     Description: ""
   })
+
+  const setToggle = () => {
+    setfileornot(!fileornot)
+  }
 
   const onImageChange = (event) => {
     
@@ -70,6 +75,7 @@ function AddNewPost() {
     e.preventDefault();
     console.log(content.contract.current)
     AddDataToMain();
+    
   }
 
   return (
@@ -84,7 +90,19 @@ function AddNewPost() {
           <br />
           <br />
           <label className={classes.label}>CHOOSE A FILE TO UPLOAD</label>
-          <input className={classes.input} type="file" required onChange={onImageChange} webkitdirectory="true" directory="true" multiple/>
+          <div className={classes.toggle} onClick={setToggle}>
+              {
+                (fileornot === false)?<div className={classes.tg_btn}>Choose Folder</div>
+                :<div className={classes.tg_btn1}>Choose File</div>
+              }
+          </div>
+          {
+            (fileornot === false)?<><label className={classes.label}>UPLOAD FOLDER</label>
+            <input className={classes.input} type="file" required onChange={onImageChange} set webkitdirectory="true" directory="true" multiple/></>
+            :<>
+            <label className={classes.label}>UPLOAD FILE</label>
+          <input className={classes.input} type="file" required onChange={onImageChange}/></>
+          }
           <br />
           <br />
           <label className={classes.label}>DESCRIPTION</label>
