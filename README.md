@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# EduBadge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Problem Statement
 
-## Available Scripts
+In the era of excessive competiton, where students are constantly trying to earn new skills and work on different projects, the students need to store their git hub badges, research papers and much more in an  authentic and more effective than conventional method. 
+The problem also lies in the user experience and compromise on data security.
 
-In the project directory, you can run:
+## Link to website
+https://web3-social-media-app.vercel.app/
 
-### `npm start`
+## Proposed Solution
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+EVM compatible chain powered smart contract for to bring the dream of a new-age credential verification to life, for blockchain based solution to make student assets ( git hub badges, research papers more authentic and more effective than conventional methods of submissions). The solution also had to provide an enhanced user experience, without compromising on data security.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To ensure this, we establish Blockchain as the centrepiece in our design thinking (primarily for its immutability and inherent use of cryptography)  bring the dream of a new-age credential verification to life, thus the solution to provide an enhanced user experience, without compromising on data security.
 
-### `npm test`
+## Functionalities
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Help the employer reduce costs and time of traditional verification of certificate by providing proof of achievement and membership.
+2. Help the institution save time and money for producing certificate papers.
+3. Protect the certificate from mutation.
+4. Provide lifelong storage.
+5. Help Informal learning like online learning, boot camps becomes more secure, trustable and recognized, which is recently unappreciated and short of official certificates.
+6. Students take full of responsibility to protect and share their certificates without the need of a central party.
 
-### `npm run build`
+## Modules
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Login Page
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/d9d890b6-2e3e-486e-ad64-c1bf9c102433)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Home Page
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/9094267b-f4ad-462a-b5e5-b35a69b99c03)
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/17bafa3e-56d9-47d1-9cc1-16d18ea74cba)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Profile Page
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/de7f714f-cb2d-4ad8-add6-138afc3e8aca)
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/cd22d285-ec91-4862-ac4c-fac85f81a06b)
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/376fd516-0ce7-4fc1-9fb6-be0447cb6e4f)
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/289c3db9-29f1-4324-8ba2-96eb7e539ef9)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### About Page
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/e6dc0fbc-57f5-48e8-9cb4-5c7f4b73493b)
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/40ce32dd-dce9-42d6-9739-01da2d02a7fa)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Individual Post
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/dc2823dd-6365-43e3-acce-f31262630d7c)
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/93f6e378-f82f-48b9-993b-328a675bb164)
+![image](https://github.com/Shweta2003/Web3_Social_Media_App/assets/65994349/b373d610-ab94-4926-affb-cb6bf139af83)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Future Scope
 
-## Learn More
+### 1. Better Interaction
+Make EduBadge more flexible and userFriendly improve its interface and also make navigation easier and fun
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 2. Expand UserBase
+Create different ends for different types of users(students, intitutes, companies etc)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. Customixable
+Increase flexibility so that users can customize their protfolios/profiles according to their need
 
-### Code Splitting
+## Conclusion
+Thus we have made an attempt to create a web based application using Solidity Contract and ReactJs as framework to build a platform where students can showcase their works(art/projects/badges/papers etc) and can serve as a portfolio for institutes and companies to evaluate and check for validation/authentication.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
