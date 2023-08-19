@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect} from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import classes from './Home.module.css'
 import { WebVariable } from '../../App';
 import { Link } from 'react-router-dom';
@@ -60,7 +60,6 @@ const Home = () => {
 
   useEffect(() => {
     getFromWeb3();
-    console.log(allData)
   }, []);
 
   const HandleFollow = async (account) => {
@@ -80,19 +79,21 @@ const Home = () => {
       <div className={classes.c2}>
         <h1 className={classes.head}>All Posts</h1>
         <div className={classes.break}></div>
-        {/* Display all posts */}
 
+        {/* Display all posts */}
         {allData.map((data, index) => (
-          <Post
-            CID={data.file_CID}
-            name={data.file_name}
-            key={index}
-            imgSrc={`https://${data.file_CID}.ipfs.w3s.link/${data.file_name}`}
-            username={data.title}
-            caption={data.desc}
-            num={data.like}
-            address={data.user_address}
-          />
+            <Post
+              CID={data.file_CID}
+              name={data.file_name}
+              key={index}
+              imgSrc={`https://${data.file_CID}.ipfs.w3s.link/${data.file_name}`}
+              username={data.title}
+              caption={data.desc}
+              num={data.like}
+              address={data.user_address}
+              date={data.post_date}
+              viewers={data.viewers}
+            />
         ))}
 
       </div>

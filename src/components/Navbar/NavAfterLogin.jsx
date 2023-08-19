@@ -18,10 +18,11 @@ const NavAfterLogin = () => {
     return (
         <nav>
             <div className={classes.navbar}>
-                <div className={classes.navname}><img src={logo} className={classes.logo} alt='' /> <span className={classes.name}>Social Web</span></div>
+                <div className={classes.navname}><img src={logo} className={classes.logo} alt='' /> <span className={classes.name}>EduBadge</span></div>
                 <ul className={classes['nav-links']} >
                     <Link to="../home" className={classes.opt1}>Home</Link>
                     <Link to={`../profile/${content.account.current}`} state={{ from: `${content.account.current}` }} className={classes.opt1}>Profile</Link>
+                    <Link to="../about" className={classes.opt1}>About</Link>
                     <Link onClick={HandleLogout} className={classes.opt1}>Logout</Link>
                 </ul>
             </div>

@@ -8,7 +8,7 @@ const Navbar = () => {
     return (
         <nav>
             <div className={classes.navbar}>
-                <div className={classes.navname}><img src={logo} className={classes.logo} alt='' /> <span className={classes.name}>Social Web</span></div>
+                <div className={classes.navname}><img src={logo} className={classes.logo} alt='' /> <span className={classes.name}>EduBadge</span></div>
             </div>
         </nav>
     );

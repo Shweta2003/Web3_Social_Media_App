@@ -9,7 +9,8 @@ import Navbar from './components/Navbar/Navbar'
 import {createContext, useRef } from 'react';
 import ABI from './components/common/ABI'
 import Web3 from 'web3';
-
+import PostDetailsPage from './pages/PostDetailsPage'
+import AboutPage from './pages/AboutPage'
 
 export const WebVariable = createContext();
 
@@ -33,7 +34,7 @@ const App = () => {
     account.current = userAccount[0];
 
     // setting connection to contract
-    contract.current = new get.eth.Contract(ABI, "0x45D7A8B02B95256B8393B5df9D930d1905d452ce");
+    contract.current = new get.eth.Contract(ABI, "0xDc7e8B8a0Bb55Cc24BF843343084a62398b68861");
   }
 
   const OldUser = async() => {
@@ -55,7 +56,8 @@ const App = () => {
         <Route path='/profile/:id' element={<Profile />} />
         <Route path='/editMyProfile' element={<EditProfile />} />
         <Route path='/createNewPost' element={<CreateNewPost />} />
-
+        <Route path='/post/:index' element={<PostDetailsPage />} />
+        <Route path='/about' element={<AboutPage />} />
       </Routes>
       </WebVariable.Provider>
     </div>
