@@ -160,6 +160,8 @@ const ProfilePage = () => {
               caption={data.desc}
               num={data.like}
               address={data.user_address}
+              date={data.post_date}
+              viewers={data.viewers}
             />
             ))
           :console.log()

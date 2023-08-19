@@ -20,20 +20,27 @@
   
   h1 {
     font-weight: 800;
-    font-size: 40px;
+    margin-top: 50px;
+    font-size: 50px;
     margin-bottom: 10px;
     color: #145693;
   }
 
   h2 {
     font-weight: 800;
-    font-size: 30px;
+    font-size: 40px;
     margin-bottom: 10px;
     color: #145693;
   }
+
+  h4{
+    font-size: 30px;
+    font-weight: lighter;
+  }
   
-  p {
-    font-size: 16px;
+  .pp {
+    font-size: 20px;
+    font-weight: lighter;
     margin-bottom: 40px;
   }
 
@@ -48,4 +55,8 @@
 
   .heading {
     text-align: center;
+  }
+
+  h3 {
+    font-size: 30px;
   }

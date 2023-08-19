@@ -1,4 +1,4 @@
-// contract ID = 0x45D7A8B02B95256B8393B5df9D930d1905d452ce
+// contract ID = 0xDc7e8B8a0Bb55Cc24BF843343084a62398b68861
 
 const ABI =  [
     {
@@ -26,6 +26,11 @@ const ABI =  [
             {
                 "internalType": "string",
                 "name": "_file_CID",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_post_date",
                 "type": "string"
             }
         ],
@@ -136,6 +141,16 @@ const ABI =  [
                         "internalType": "int256",
                         "name": "like",
                         "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "viewers",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "post_date",
+                        "type": "string"
                     }
                 ],
                 "internalType": "struct user.Post[]",
@@ -341,6 +356,16 @@ const ABI =  [
                 "internalType": "int256",
                 "name": "like",
                 "type": "int256"
+            },
+            {
+                "internalType": "int256",
+                "name": "viewers",
+                "type": "int256"
+            },
+            {
+                "internalType": "string",
+                "name": "post_date",
+                "type": "string"
             }
         ],
         "stateMutability": "view",

@@ -1,5 +1,5 @@
 /* Post.module.css */
-.post {
+.post, .postk {
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -33,7 +33,7 @@
     scale: 0.8;
   }
   
-  .postUsername {
+  .postUsername, .postUsername1 {
     font-size: 20px;
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -98,4 +98,128 @@
     font-weight: 100;
   }
 
+
+  .post1p{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+
+  }
+
+  .postk, .postk1{
+    width: 580px;
+    padding: 10px;
+    height: min-content;
+  }
+
+  .right_part{
+    margin-top: 30px;
+    width: 50%;
+  }
+
+  .tt{
+    font-size: 18px;
+    margin: 20px 0px;
+    font-weight:300;
+  }
+
+  .postUsername1{
+    font-size: 35px;
+    line-height: 60px;
+    margin-left: -40px;
+  }
+
+  .special{
+    margin-bottom: 40px;
+    margin-left: -100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .sp1{
+    color: #145693;
+    font-weight: lighter;
+  }
+
+  .make1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .class11{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items:end;
+    justify-content: flex-end;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .s1{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 5px 0px;
+    font-weight: lighter;
+  }
+
+  .all_dett{
+    width: 95%;
+    margin-top: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    padding-top: 30px;
+    margin-bottom: 50px;
+  }
+
+  .hh{
+    width: 100%;
+    font-size: 30px;
+    font-weight: lighter;
+    color: #145693;
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-left: -20px;
+  }
+
+  .left_part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ext_but{
+    margin-bottom: 30px;
+  }
+
+  .postk1{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-decoration: none;
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 25px;
+    color: white;
+    background-color: #145693;
+  }
+
+  .detail{
+    font-size: 17px;
+    text-align: justify;
+    margin-bottom: -20px;
+  }
   

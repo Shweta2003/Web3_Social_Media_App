@@ -79,6 +79,9 @@ contract user {
     // login
     function Login(address _user_address) public {
         currently_logged_in.push(_user_address);
+        for(uint i = 0 ; i < all_posts.length ; i ++){
+            all_posts[i].viewers += 1;
+        }
     }
 
     // currently logged user
@@ -111,11 +114,13 @@ contract user {
         string file_CID;
         string file_name;
         int like;
+        int viewers;
+        string post_date;
     }
 
     // function to add post
-    function AddNewPost(address _user_address, string memory _title, string memory _desc, string memory _file_name, string memory _file_CID) public {
-        all_posts.push(Post({user_address : _user_address, title : _title, desc : _desc, file_CID : _file_CID, file_name : _file_name, like : 0}));
+    function AddNewPost(address _user_address, string memory _title, string memory _desc, string memory _file_name, string memory _file_CID, string memory _post_date) public {
+        all_posts.push(Post({user_address : _user_address, title : _title, desc : _desc, file_CID : _file_CID, file_name : _file_name, like : 0, viewers : 0, post_date : _post_date}));
     }
 
     // function to display all posts

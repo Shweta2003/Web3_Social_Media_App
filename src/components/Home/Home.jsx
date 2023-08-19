@@ -60,7 +60,6 @@ const Home = () => {
 
   useEffect(() => {
     getFromWeb3();
-    console.log(allData)
   }, []);
 
   const HandleFollow = async (account) => {
@@ -83,7 +82,6 @@ const Home = () => {
 
         {/* Display all posts */}
         {allData.map((data, index) => (
-          <Link to={`/post/${index}`} key={index} state={{ post: data }}>
             <Post
               CID={data.file_CID}
               name={data.file_name}
@@ -93,8 +91,9 @@ const Home = () => {
               caption={data.desc}
               num={data.like}
               address={data.user_address}
+              date={data.post_date}
+              viewers={data.viewers}
             />
-          </Link>
         ))}
 
       </div>
